@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="hb_point_of_sale_assets" name="hb assets" inherit_id="point_of_sale.assets">
+            <xpath expr="." position="inside">
+
+                <script type="text/javascript" src="/hb_pos_custom/static/src/js/models.js"></script>
+            </xpath>
+        </template>
+         <template id="assets_backend" name="your_module_name_assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/hb_pos_custom/static/src/js/disable_number_pad.js"></script>
+            </xpath>
+        </template>
+    </data>
+</odoo>

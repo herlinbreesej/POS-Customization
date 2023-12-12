@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates id="template" xml:space="preserve">
+
+     <t t-name="ClientListScreen"
+       t-inherit="point_of_sale.ClientListScreenWidget" owl="1"
+       t-inherit-mode="extension">
+
+        <xpath expr="//table[hasclass('client-list')]/thead/tr/th[3]"
+               position="after">
+            <th>Customer Type</th>
+        </xpath>
+    </t>
+    <t t-name="ClientLine" t-inherit="point_of_sale.ClientLine" owl="1"
+       t-inherit-mode="extension">
+        <xpath expr="//tr[@t-att-data-id='partner.id']/td[3]"
+               position="after">
+            <td style="word-break: break-word;">
+                <t t-esc="partner.customer_type"/>
+            </td>
+        </xpath>
+
+    </t>
+
+    <t t-extend="ClientDetailsEdit">
+        <t t-jquery=".client-details-right div:nth-child(4)" t-operation="after">
+            <div class='client-detail'>
+                <span class='label'>Customer Type</span>
+                <select class="detail customer_type" name='customer_type' >
+                    <option value="potential" t-att-selected="partner.customer_type ? (('potential' === partner.customer_type) ? true : undefined) : undefined">Potential</option>
+                    <option value="value" t-att-selected="partner.customer_type ? (('value' === partner.customer_type) ? true : undefined) : undefined">Value</option>
+                    <option value="impulse" t-att-selected="partner.customer_type ? (('impulse' === partner.customer_type) ? true : undefined) : undefined">Impulse</option>
+                </select>
+            </div>
+        </t>
+    </t>
+
+    <t t-extend="ClientDetails">
+        <t t-jquery=".client-details-right div:nth-child(2)" t-operation="after">
+            <div class='client-detail'>
+                <span class='label'>Customer Type</span>
+                <t t-if='partner.customer_type'>
+                        <span class='detail customer_type'><t t-esc='widget.pos.get_customer_type(partner.customer_type)'/></span>
+                </t>
+                <t t-if='!partner.customer_type'>
+                    <span class='detail customer_type empty'>N/A</span>
+                </t>
+
+            </div>
+
+        </t>
+    </t>
+
+
+
+
+</templates>
