@@ -23,4 +23,3 @@ To disable the Number Pad in the POS, follow these steps:
 
 By configuring this option, both the payment screen's number pad and the product screen's number pad will be disabled.
 
-Please ensure that you have the necessary access rights to make these configurations.
